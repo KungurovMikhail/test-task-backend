@@ -62,20 +62,19 @@ class AppFixtures extends Fixture
     private function loadTaxs(ObjectManager $manager): void
     {
         $taxs = [
-            ['country' => 'Германия', 'tax_number' => 'DEXXXXXXXXX', 'percent' => '19'],
-            ['country' => 'Италия', 'tax_number' => 'ITXXXXXXXXXXX', 'percent' => '22'],
-            ['country' => 'Франция', 'tax_number' => 'GRXXXXXXXXX', 'percent' => '20'],
-            ['country' => 'Греция', 'tax_number' => 'FRYYXXXXXXXXX', 'percent' => '24'],
+            ['country_code' => 'DE', 'percent' => '19'],
+            ['country_code' => 'IT', 'percent' => '22'],
+            ['country_code' => 'GR', 'percent' => '20'],
+            ['country_code' => 'FR', 'percent' => '24'],
         ];
 
         foreach ($taxs as $elem) {
-            $coupon = new Tax();
-            $coupon
-                ->setCountry($elem['country'])
-                ->setTaxNumber($elem['tax_number'])
+            $tax = new Tax();
+            $tax
+                ->setCountryCode($elem['country_code'])
                 ->setPercent($elem['percent']);
 
-            $manager->persist($coupon);
+            $manager->persist($tax);
         }
     }
 }

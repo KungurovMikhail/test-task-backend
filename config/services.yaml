@@ -18,3 +18,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\PaymentProcessorResolver:
+        arguments:
+            $processors: !tagged_iterator app.payment_processor
+
+    App\Service\PaypalAdapter:
+        tags: ['app.payment_processor']
+    App\Service\StripeAdapter:
+        tags: ['app.payment_processor']
+
+    Systemeio\TestForCandidates\PaymentProcessor\PaypalPaymentProcessor: ~
+    Systemeio\TestForCandidates\PaymentProcessor\StripePaymentProcessor: ~

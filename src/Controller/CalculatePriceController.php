@@ -25,6 +25,14 @@ final class CalculatePriceController extends AbstractController
 
     public function __invoke(#[ValueResolver(RequestBodyArgumentResolver::class)] CalculatePriceRequestDTO $dto): Response
     {
-        return $this->json($this->calculatePriceService->calculate($dto));
+        //вынести всe Exceptions в лисенер
+        try {
+            return $this->json($this->calculatePriceService->calculate($dto));
+        } catch (\Exception $e) {
+            return $this->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
 }

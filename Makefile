@@ -38,3 +38,6 @@ install: ## Install dependencies without running the whole application.
 success-message:
 	@echo "You can now access the application at http://localhost:8337"
 	@echo "Good luck! 🚀"
+
+fixtures: ## Fixtures
+	${DC_EXEC} php bin/console doctrine:fixtures:load --append --no-interaction

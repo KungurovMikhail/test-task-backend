@@ -28,7 +28,7 @@ final class PurchaseController extends AbstractController
 
     public function __invoke(#[ValueResolver(RequestBodyArgumentResolver::class)] PurchaseRequestDTO $dto): Response
     {
-        //вынести всe Exceptions в лисенер
+        //вынести всe Exceptions в лисенер, добавить общие исключения и т.д
         try {
             $this->purchaseService->purchase($dto);
 

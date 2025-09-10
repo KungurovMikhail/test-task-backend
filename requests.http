@@ -9,6 +9,49 @@ Content-Type: application/json
   "couponCode": "P25"
 }
 
+### Calculate Price Without Coupon
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "DE123456789"
+}
+
+### Calculate Price Invalid Product
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 100,
+    "taxNumber": "DE123456789",
+    "couponCode": "P25"
+}
+
+### Calculate Price Invalid Tax Number
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 3,
+    "taxNumber": "DE1234567892",
+    "couponCode": "P25"
+}
+
+### Calculate Price Invalid Coupon
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 3,
+    "taxNumber": "DE1234567892",
+    "couponCode": "P2522"
+}
+
 ### Execute Purchase
 POST http://127.0.0.1:8337/purchase
 Accept: application/json
@@ -19,4 +62,63 @@ Content-Type: application/json
   "taxNumber": "IT12345678900",
   "couponCode": "P10",
   "paymentProcessor": "paypal"
+}
+
+### Execute Purchase Without Coupon
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "DE123456789",
+    "paymentProcessor": "paypal"
+}
+
+### Execute Purchase Invalid Product
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 100,
+    "taxNumber": "DE123456789",
+    "couponCode": "P25",
+    "paymentProcessor": "paypal"
+}
+
+### Execute Purchase Invalid Tax Number
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 3,
+    "taxNumber": "DE12345678922",
+    "couponCode": "P25",
+    "paymentProcessor": "paypal"
+}
+
+### Execute Purchase Invalid Coupon
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 3,
+    "taxNumber": "DE123456789",
+    "couponCode": "P2522",
+    "paymentProcessor": "stripe"
+}
+
+### Execute Purchase Invalid Payment Processor
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 3,
+    "taxNumber": "DE123456789",
+    "couponCode": "P25",
+    "paymentProcessor": "test-processor"
 }
